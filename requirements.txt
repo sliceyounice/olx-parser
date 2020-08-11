@@ -1,0 +1,6 @@
+requests
+lxml
+cssselect
+pymongo
+python-telegram-bot
+APScheduler
