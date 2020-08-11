@@ -1,5 +1,7 @@
 import requests
 from lxml import html as parser
+from mongo import offers
+import itertools
 
 
 def construct_offer(node):
@@ -22,3 +24,12 @@ def parse_offers():
     response = requests.post('https://www.olx.ua/ajax/donetsk/search/list/', files=data, headers={"User-Agent": user_agent})
     offer_nodes = parser.fromstring(response.content.decode('utf-8')).cssselect('table#offers_table>tbody>tr.wrap')
     return [construct_offer(node) for node in offer_nodes]
+
+
+def find_new_offers():
+    parsed_offers = parse_offers()
+    old_offers = offers.find_all()
+    new_offers = list(itertools.filterfalse(lambda x: x in old_offers, parsed_offers))
+    if new_offers:
+        offers.insert_many(new_offers)
+    return new_offers
