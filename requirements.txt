@@ -4,3 +4,4 @@ cssselect
 pymongo
 python-telegram-bot
 APScheduler
+dnspython
