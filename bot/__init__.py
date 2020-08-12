@@ -1,4 +1,4 @@
-import os
+from decouple import config
 from telegram.ext import Updater, CommandHandler
 
-updater = Updater(token=os.environ['telegram-token'], use_context=True)
+updater = Updater(config('telegram-token'), use_context=True)

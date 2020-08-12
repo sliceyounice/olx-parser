@@ -1,3 +1,3 @@
-import os
+from decouple import config
 from pymongo import MongoClient
-connection = MongoClient(os.environ['mongostring'])['olx-parser']
+connection = MongoClient(config('mongostring'))['olx-parser']

@@ -5,3 +5,4 @@ pymongo
 python-telegram-bot
 APScheduler
 dnspython
+python-decouple
